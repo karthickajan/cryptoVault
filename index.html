@@ -632,8 +632,20 @@ function updateStrength(inputId, strengthId) {
 
 // ── AES INTERNALS ──
 function padKey(key, size) {
+  const bytes = parseInt(size) / 8;          // 128→16, 192→24, 256→32
+  // If the key is already a hex string of exact length, use it directly
+  const hexLen = bytes * 2;
+  if (new RegExp('^[0-9a-fA-F]{' + hexLen + '}$').test(key)) {
+    return CryptoJS.enc.Hex.parse(key);
+  }
+  // If the key is a UTF-8 string of exact byte-length, use raw bytes
+  const utf8WA = CryptoJS.enc.Utf8.parse(key);
+  if (utf8WA.sigBytes === bytes) {
+    return utf8WA;
+  }
+  // Otherwise, derive a key via SHA-256 and truncate to requested size
   const hex = CryptoJS.SHA256(key).toString(CryptoJS.enc.Hex);
-  return CryptoJS.enc.Hex.parse(hex.substring(0, parseInt(size) / 4));
+  return CryptoJS.enc.Hex.parse(hex.substring(0, hexLen));
 }
 function getIVWA(ivStr) {
   if (!ivStr || !ivStr.trim()) {
