@@ -13,7 +13,7 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://dns.google https://www.google-analytics.com https://www.googletagmanager.com https://script.google.com; img-src 'self' data: blob: https://www.google-analytics.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self' https://dns.google https://script.google.com; img-src 'self' data: blob:;">
 
   <!-- Open Graph -->
   <meta property="og:title" content="CSV to Excel Converter – Convert CSV to XLSX Online | CipherKit">
@@ -107,7 +107,6 @@
   <!-- Fonts — non-blocking, font-display:swap prevents layout shift -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="preload" as="style"
     href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700&family=Syne:wght@400;600;700;800&display=swap"
     onload="this.onload=null;this.rel='stylesheet'">
@@ -155,13 +154,7 @@
   <link rel="stylesheet" href="/assets/css/layout.css?v=25bd0372">
   <link rel="stylesheet" href="/assets/css/tool.css?v=25bd0372">
   <link rel="stylesheet" href="/assets/css/feedback.css?v=25bd0372" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="/assets/css/feedback.css?v=25bd0372"></noscript>
-
-  <!-- GA4 anonymous analytics — deferred to not block rendering -->
-  <script>
-    (function(){var loaded=false;function loadGA(){if(loaded)return;loaded=true;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-31DPEW6FGL';s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-31DPEW6FGL',{anonymize_ip:true});}['scroll','click','keydown','touchstart'].forEach(function(e){document.addEventListener(e,loadGA,{once:true,passive:true});});})();
-  </script>
-</head>
+  <noscript><link rel="stylesheet" href="/assets/css/feedback.css?v=25bd0372"></noscript></head>
 <body>
 
 <a href="#tool-interface" class="skip-link">Skip to tool</a>
