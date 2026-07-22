@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   var _k=[99,105,112,104,101,114,107,105,116,46,97,112,112],_c=function(a){for(var s='',i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return s},_n=window.location.hostname,_p=_c(_k);
-  if(_n!==_p&&_n.indexOf('.'+_p)===-1&&!/^(localhost|127\.0\.0\.1|192\.168\.|10\.0\.|.*\.local)/.test(_n)){document.documentElement.innerHTML='';window.stop&&window.stop();return}
+  if(_n!==_p&&_n.indexOf('.'+_p)===-1&&!/^(localhost|127\.0\.0\.1|192\.168\.|10\.0\.|.*\.local|.*\.github\.io)$/.test(_n)){document.documentElement.innerHTML='';window.stop&&window.stop();return}
   function lsGet(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
   function lsSet(key, val) { try { localStorage.setItem(key, val); } catch (e) { /* quota / private */ } }
   function lsGetJSON(key) { try { var v = lsGet(key); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
@@ -15,7 +15,7 @@
   }
   var SLUG = getSlug();
   var IS_TOOL_PAGE = !!SLUG;
-  var IS_HOMEPAGE = location.pathname === '/' || location.pathname === '/index.html';
+  var IS_HOMEPAGE = !/\/tools\//.test(location.pathname) && /\/(?:index\.html)?$/.test(location.pathname);
   var IC_LINK = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
   /* ════════════════════════════════════════════════════════════════════════
    *  TOOL CONFIG — maps slug → { inputs, selects, runBtn, outputEl, skip }

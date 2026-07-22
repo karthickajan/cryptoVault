@@ -1,8 +1,14 @@
 (function () {
   'use strict';
+  var CK_BASE = (function () {
+    var h = window.location.hostname || '';
+    if (!/github\.io$/i.test(h)) return '';
+    var m = (window.location.pathname || '/').match(/^\/([^/]+)/);
+    return m ? '/' + m[1] : '';
+  })();
   var _m = [99,105,112,104,101,114,107,105,116,46,97,112,112], _l = [108,111,99,97,108,104,111,115,116], _i = [49,50,55,46,48,46,48,46,49];
   var _h = function(a){return a.map(function(c){return String.fromCharCode(c)}).join('')};
-  var _v = function(){var h=window.location.hostname,p=_h(_m),d='.'+p;return h===p||h.endsWith(d)||h===_h(_l)||h===_h(_i)||h.endsWith('.local')||h.includes('localhost')||h.includes('192.168.')||h.includes('10.0.')};
+  var _v = function(){var h=window.location.hostname,p=_h(_m),d='.'+p;return h===p||h.endsWith(d)||h===_h(_l)||h===_h(_i)||h.endsWith('.local')||h.endsWith('.github.io')||h.includes('localhost')||h.includes('192.168.')||h.includes('10.0.')};
   if(!_v()){var _r=_h([104,116,116,112,115,58,47,47])+_h(_m)+_h([47,63,114,101,102,61,109,105,114,114,111,114]);setTimeout(function(){window.location.replace(_r)},100)}
   let _toastTimer = null;
   function toast(msg, type) {
@@ -211,7 +217,7 @@
     var tools = null;
     searchInput.addEventListener('focus', function () {
       if (tools) return;
-      fetch('/tools.json')
+      fetch((CK_BASE || '') + '/tools.json')
         .then(function (r) { return r.json(); })
         .then(function (data) { tools = data.tools || data; })
         .catch(function () {});
@@ -233,7 +239,7 @@
       try { re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'); } catch (_) { re = null; }
       dropdown.innerHTML = results.map(function (t) {
         var name = re ? t.title.replace(re, '<mark>$1</mark>') : t.title;
-        return '<a class="nav-search-result" href="/tools/' + t.slug + '/">'
+        return '<a class="nav-search-result" href="' + (CK_BASE || '') + '/tools/' + t.slug + '/">'
           + name
           + '<span style="font-size:.75rem;color:var(--muted);display:block;margin-top:2px">'
           + (t.tagline || '') + '</span></a>';

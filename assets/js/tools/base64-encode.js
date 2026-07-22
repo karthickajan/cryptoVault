@@ -138,7 +138,9 @@
     var output = isPlaceholder() ? '' : $('t-result').textContent;
     if (!output) { CK.toast('Nothing to send'); return; }
     try { sessionStorage.setItem('ck_b64_transfer', output); } catch (_) {}
-    window.location.href = '/tools/base64-decode/';
+    var m = (window.location.hostname.match(/github\.io$/i) && (window.location.pathname.match(/^\/([^/]+)/) || [])[1]) || '';
+    var base = m ? ('/' + m) : '';
+    window.location.href = base + '/tools/base64-decode/';
   });
   $('btn-swap').addEventListener('click', function () {
     var ov = isPlaceholder() ? '' : $('t-result').textContent;
